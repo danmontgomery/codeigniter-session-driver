@@ -10,6 +10,6 @@ This is a replacement for CodeIgniter's session library which utilizes drivers. 
 * Native
 * Cache
 
-There are a few new config options, other than that the only thing that changes in the usage of the session library is the way it's loaded:
+There are a couple of new config options in config/session.php, and the 'sess_use_database' option is no longer used.
 
-	$this->load->driver('session');
+	$this->load->spark('session-driver/0.0.1');

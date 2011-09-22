@@ -24,6 +24,14 @@
  * @author		ExpressionEngine Dev Team
  * @link		http://codeigniter.com/user_guide/libraries/sessions.html
  */
+
+if ( ! class_exists('CI_Driver_Library'))
+{
+	get_instance()->load->library('driver');
+}
+
+define('SESS_DRIVER_PATH', realpath(dirname(__FILE__).'/session'));
+
 class Session extends CI_Driver_Library {
 
 	public $userdata				= array();
@@ -396,11 +404,35 @@ class Session extends CI_Driver_Library {
 
 	// ------------------------------------------------------------------------
 
+	/**
+	 * Call child methods when they don't exist here
+	 *
+	 * @access public
+	 * @return mixed
+	 */
 	public function __call($method, $arguments)
 	{
 		return call_user_func_array(array($this->{$this->_driver}, $method), $arguments);
 	}
 
 	// ------------------------------------------------------------------------
+
+	/**
+	 * Sparks has poor/no driver support (autoload, too), so include the driver file here if it's not found
+	 *
+	 * @access public
+	 * @return mixed
+	 */
+	public function __get($child)
+	{
+		$file = SESS_DRIVER_PATH.'/Session_'.strtolower($child).'.php';
+
+		if (file_exists($file))
+		{
+			include_once($file);
+		}
+
+		return parent::__get($child);
+	}
 
 }
