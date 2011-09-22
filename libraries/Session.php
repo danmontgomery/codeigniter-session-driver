@@ -64,6 +64,8 @@ class Session extends CI_Driver_Library {
 
 		$this->CI = get_instance();
 
+		$this->CI->load->config('session');
+
 		$this->_driver = (isset($params['driver']) ? $params['driver'] : $this->CI->config->item('sess_driver'));
 
 		foreach (array('sess_expiration', 'sess_expire_on_close', 'sess_match_ip', 'sess_match_useragent',
