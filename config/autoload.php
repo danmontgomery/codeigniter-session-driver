@@ -1,3 +1,3 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-$autoload['library'] = array('session');
+$autoload['libraries'] = array('session');
