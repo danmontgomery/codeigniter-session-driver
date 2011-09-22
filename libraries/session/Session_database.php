@@ -310,7 +310,7 @@ class Session_database extends CI_Driver {
 	// --------------------------------------------------------------------
 	
 	/**
-	 * Does nothing for cookie sessions
+	 * Clean up old session records
 	 *
 	 * @access private
 	 * @return void

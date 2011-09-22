@@ -243,7 +243,7 @@ class Session_cache extends CI_Driver {
 	// --------------------------------------------------------------------
 	
 	/**
-	 * Does nothing for cookie sessions
+	 * Does nothing for cache sessions
 	 *
 	 * @access private
 	 * @return void

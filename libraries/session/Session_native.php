@@ -142,7 +142,7 @@ class Session_native extends CI_Driver {
 	// --------------------------------------------------------------------
 	
 	/**
-	 * Does nothing for cookie sessions
+	 * Does nothing for native sessions
 	 *
 	 * @access private
 	 * @return void
