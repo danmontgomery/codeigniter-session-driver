@@ -8,5 +8,5 @@
 | 'sess_cache_driver'		= driver to use for cache
 |
 */
-$config['sess_driver']			= 'cache';
+$config['sess_driver']			= 'cookie';
 $config['sess_cache_driver']	= 'apc';
