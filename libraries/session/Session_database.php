@@ -5,6 +5,7 @@ class Session_database extends CI_Driver {
 	protected $CI;
 
 	protected $sess_cookie_name;
+	protected $sess_encrypt_cookie;
 	protected $cookie_prefix;
 	protected $cookie_path;
 	protected $cookie_domain;
