@@ -437,13 +437,4 @@ class Session extends CI_Driver_Library {
 		return parent::__get($child);
 	}
 
-	// ------------------------------------------------------------------------
-
-	/**
-	 * Does nothing for this parent class
-	 *
-	 * @return void
-	 */
-	public function sess_write(){}
-
 }
