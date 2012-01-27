@@ -120,7 +120,12 @@ class Session_cookie extends CI_Driver {
 	 */
 	public function sess_write()
 	{
-		$this->_set_cookie();
+		if( ! $this->parent->check_write())
+		{
+			$this->parent->track_write();
+
+			$this->_set_cookie();
+		}
 	}
 
 	// --------------------------------------------------------------------

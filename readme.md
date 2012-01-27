@@ -17,4 +17,16 @@ There are a couple of new config options in config/session.php, and the 'sess_us
 (Replace X.X.X with the appropriate version)
 
 ###NOTE
-I moved sess_write() to __destruct(), which means that session writes will only happen once per request (useful for database sessions), it also means that these queries won't show up in the profiler, because they happen after the profiler has finished running.
+I suggest adding a call to sess_write() in the _output function of the controller, which will write the session before output and avoid issues with setting the cookie. If you don't do this, the library will try to write in __destruct(), which may or may not cause you issues.
+
+	class MY_Controller extends CI_Controller {
+		public function _output($output)
+		{
+			if(isset($this->session))
+			{
+				$this->session->sess_write();
+			}
+
+			echo $output;
+		}
+	}

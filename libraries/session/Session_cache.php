@@ -133,8 +133,14 @@ class Session_cache extends CI_Driver {
 	 */
 	public function sess_write()
 	{
-		$this->CI->cache->save($this->sess_id, $this->parent->_serialize($this->parent->userdata), $this->parent->sess_expiration);
-		$this->_set_cookie();
+		if( ! $this->parent->check_write())
+		{
+			$this->CI->cache->save($this->sess_id, $this->parent->_serialize($this->parent->userdata), $this->parent->sess_expiration);
+
+			$this->parent->track_write();
+
+			$this->_set_cookie();
+		}
 	}
 
 	// --------------------------------------------------------------------

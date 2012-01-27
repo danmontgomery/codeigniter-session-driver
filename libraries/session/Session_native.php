@@ -69,10 +69,15 @@ class Session_native extends CI_Driver {
 	 */
 	public function sess_write()
 	{
-		$_SESSION = array();
-		foreach($this->parent->userdata as $key => $val)
+		if( ! $this->parent->check_write())
 		{
-			$_SESSION[$key] = $val;
+			$_SESSION = array();
+			foreach($this->parent->userdata as $key => $val)
+			{
+				$_SESSION[$key] = $val;
+			}
+
+			$this->parent->track_write();
 		}
 	}
 

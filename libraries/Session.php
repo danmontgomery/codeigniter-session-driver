@@ -44,6 +44,7 @@ class Session extends CI_Driver_Library {
 	public $sess_match_useragent	= TRUE;
 	public $sess_time_to_update		= 300;
 
+	protected $_has_written			= FALSE;
 	protected $_driver;
 	protected $valid_drivers;
 
@@ -114,6 +115,17 @@ class Session extends CI_Driver_Library {
 		$this->_sess_gc();
 
 		log_message('debug', "Session routines successfully run");
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * If session wasn't written by _output, try writing it here
+	 */
+	public function __destruct()
+	{
+		if(method_exists($this, 'sess_write'))
+			$this->sess_write();
 	}
 
 	// --------------------------------------------------------------------
@@ -390,6 +402,32 @@ class Session extends CI_Driver_Library {
 		}
 		
 		return $now;
+	}
+
+	// ------------------------------------------------------------------------
+
+	/**
+	 * This session has already been written, don't try to write again
+	 *
+	 * @access public
+	 * @return null
+	 */
+	public function track_write()
+	{
+		$this->_has_written = TRUE;
+	}
+
+	// ------------------------------------------------------------------------
+
+	/**
+	 * Check if session was written (presumably by _output, or manually)
+	 *
+	 * @access public
+	 * @return bool
+	 */
+	public function check_write()
+	{
+		return ( ! $this->_has_written );
 	}
 
 	// ------------------------------------------------------------------------
