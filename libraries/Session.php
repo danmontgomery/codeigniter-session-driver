@@ -116,18 +116,6 @@ class Session extends CI_Driver_Library {
 		log_message('debug', "Session routines successfully run");
 	}
 
-	// ------------------------------------------------------------------------
-
-	/**
-	 * Actually perform writes to the session
-	 *
-	 * @access public
-	 */
-	 public function __destruct()
-	 {
-	 	$this->sess_write();
-	 }
-
 	// --------------------------------------------------------------------
 
 	/**
