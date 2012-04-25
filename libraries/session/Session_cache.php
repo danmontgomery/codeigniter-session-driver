@@ -171,7 +171,7 @@ class Session_cache extends CI_Driver {
 		$custom_userdata = array('user_data' => '');
 
 		// Save session to cache
-		$this->CI->cache->save($this->sess_id, $this->parent->userdata+$custom_userdata);
+		$this->CI->cache->save($this->sess_id, $this->parent->_serialize($this->parent->userdata+$custom_userdata), $this->parent->sess_expiration);
 
 		// Write the cookie
 		$this->_set_cookie();
