@@ -427,7 +427,7 @@ class Session extends CI_Driver_Library {
 	 */
 	public function check_write()
 	{
-		return ( ! $this->_has_written );
+		return ( $this->_has_written );
 	}
 
 	// ------------------------------------------------------------------------
